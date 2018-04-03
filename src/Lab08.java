@@ -36,21 +36,6 @@ public class Lab08 {
 					break;
 			}
 		}
-		
-		/*
-		java.io.File file = new java.io.File("test.txt");
-		if (file.exists()) {
-			System.out.println("File already exists");
-			System.exit(0);
-		}
-		*/
-		
-		/*
-		try(
-			java.io.PrintWriter output = new java.io.PrintWriter(file);
-		) {
-			output.print("hello");
-		}*/
 	}
 	
 	public static void createFile(File file) {
@@ -93,14 +78,22 @@ public class Lab08 {
 					output.println();
 				}
 			} catch (FileNotFoundException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		
 	}
 	
-	public static void loadFile(File file) {
-		
+	public static void loadFile(File file) throws FileNotFoundException {
+		if(file.exists()) {
+			Scanner input = new Scanner(file);
+			while(input.hasNext()) {
+				String data = input.nextLine();
+				System.out.println(data);
+			}
+			input.close();
+		} else {
+			System.out.println("No file to load.");
+		}
 	}
 	
 	public static void eraseFile(File file) {
